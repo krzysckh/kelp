@@ -39,6 +39,7 @@
         <th> available versions </th>
       </tr>
     </table>
+    <p>Source of this website is available <a href="https://github.com/krzysckh/kelp">here</a>. </p>
     <script defer>
      const tbl = document.getElementById('scripts');
      const vs = fetch("/api/?list").then(v => v.json()).then(ob => {

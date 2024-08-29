@@ -52,3 +52,7 @@ table, tr, td, th {
 code {
   font-family: monospace;
 }
+
+.versions {
+  cursor: help;
+}
