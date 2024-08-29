@@ -1,0 +1,5 @@
+kelp server
+
+$ make
+
+and point your http server at public/

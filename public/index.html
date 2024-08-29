@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <title>kelp</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <img src="kelp.jpg" alt="kelp" />
+    <h1> kelp </h1>
+    <h5> krzysckh's emacs lisp packages </h5>
+
+    <p> A simple hosting service for single-file scripts. </p>
+    <p> You can install the kelp emacs client by evaluating these expressions: </p>
+    <pre><code>(url-copy-file "https://kelp.krzysckh.org/api/?get=kelp.el" "/tmp/kelp.el")
+(load "/tmp/kelp.el")
+(kelp/refresh)
+(kelp/install 'kelp.el)</code></pre>
+    <p><b>Note:</b> you will need <code>dash</code>, <code>f</code>, <code>request</code>, and <code>url</code> libraries installed in your emacs.</p>
+
+    <fieldset>
+      <legend> add new script via form </legend>
+      <form action="api/?add" method="POST">
+        <input type="text" name="name" placeholder="filename"> <br>
+        <input type="text" name="desc" placeholder="description"> <br>
+        <textarea name="script" placeholder="the script"></textarea> <br>
+        <input type="password" name="auth" placeholder="authorization key"> <br>
+        <button type="submit">ok</button>
+      </form>
+    </fieldset>
+
+    <h3> Scripts available (enable javascript): </h3>
+    <table id="scripts">
+      <tr>
+        <th> Name </th>
+        <th> Description </th>
+        <th> Author </th>
+        <th> available versions </th>
+      </tr>
+    </table>
+    <script defer>
+     const tbl = document.getElementById('scripts');
+     const vs = fetch("/api/?list").then(v => v.json()).then(ob => {
+       for (const [k, v] of Object.entries(ob)) {
+         const tr = document.createElement('tr');
+         const nam = document.createElement('td');
+         const desc = document.createElement('td');
+         const author = document.createElement('td');
+         const a = document.createElement('a');
+         const vs = document.createElement('td');
+         console.log(v);
+         nam.appendChild(a);
+         a.innerHTML = k;
+         a.href = `/api/?get=${k}`;
+         vs.innerHTML = v.versions.length;
+         vs.title = v.versions.join(' ');
+         author.innerHTML = v.author;
+         desc.innerHTML = v.description;
+
+         a.innerHTML = k;
+
+         tr.appendChild(nam);
+         tr.appendChild(desc);
+         tr.appendChild(author);
+         tr.appendChild(vs);
+         tbl.appendChild(tr);
+       }
+     });
+    </script>
+  </body>
+</html>
