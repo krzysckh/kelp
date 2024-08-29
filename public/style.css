@@ -67,4 +67,5 @@ table {
 
 pre {
   overflow-x: scroll;
+  overflow: auto;
 }
