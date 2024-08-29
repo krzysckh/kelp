@@ -36,10 +36,6 @@ img {
   float: right;
 }
 
-table {
-  width: 100%;
-}
-
 th, td {
   padding: 0.4em;
 }
@@ -55,4 +51,20 @@ code {
 
 .v {
   cursor: help;
+}
+
+table {
+  display: table;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+@media only screen and (max-device-width: 768px) {
+  table {
+    display: block;
+  }
+}
+
+pre {
+  overflow-x: scroll;
 }
