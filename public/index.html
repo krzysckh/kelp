@@ -19,6 +19,13 @@
 (kelp/install 'kelp.el)</code></pre>
     <p><b>Note:</b> you will need <code>dash</code>, <code>f</code>, <code>request</code>, and <code>url</code> libraries installed in your emacs.</p>
 
+    <p> To use kelp, put this somewhere in your emacs init file: </p>
+    <pre><code>(add-to-list 'load-path "~/.emacs.d/kelp/") ;; if you wish to keep the data somewhere else, update kelp/load-path and kelp/db-location
+(require 'kelp)
+(kelp/refresh)
+(mapcar #'kelp/install '(kelp.el whatever packages you want ...))
+(kelp/update)</code></pre>
+
     <fieldset>
       <legend> add new script via form </legend>
       <form action="api/?add" method="POST">
