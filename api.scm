@@ -13,7 +13,7 @@
 
 (define (P* f . s)
   (for-each
-   (λ (x) (write-bytes f (string->list (str x))))
+   (λ (x) (write-bytes f (string->bytes (str x))))
    s))
 
 (define (P . s)
