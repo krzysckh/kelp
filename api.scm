@@ -26,7 +26,8 @@
   (sys/chdir s))
 
 (define (add-script)
-  (let* ((data (url/decode-form (fold string-append "" (force-ll (lines stdin)))))
+  (let* ((data* (fold string-append "" (force-ll (lines stdin))))
+         (data (url/decode-form data*))
          (auth-key (aq 'auth data))
          (description (aq 'desc data))
          (filename (aq 'name data))
